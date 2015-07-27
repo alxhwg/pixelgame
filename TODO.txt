@@ -1,0 +1,5 @@
+This is a to-do list.
+
+1. Finish preliminary planning stage.
+2. Start Coding.
+3. Develop.
