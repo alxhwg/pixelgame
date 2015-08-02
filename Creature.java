@@ -1,4 +1,5 @@
 package pixelgame;
+import java.awt.Color;
 
 public class Creature extends Pixel {
 
