@@ -27,6 +27,8 @@ public abstract class Pixel {
 		return health;
 	}
 
-	/**Every pixel has to have a corresponding color.*/
-    public abstract Color color();
+	public void setHealth(int loss) {
+		health = health - loss;
+	}
+
 }
