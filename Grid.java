@@ -7,6 +7,7 @@ public class Grid {
 	/**2D array of the occupants*/
 	private Occupant [][] occupants;
 
+	/**Creates the grid of size gridsize.*/
 	public Grid(int gridSize) {
 		N = gridSize;
         occupants = new Occupant[N][N];
@@ -17,10 +18,17 @@ public class Grid {
         }
 	}
 
+    /** Returns true if spot at coordinates x and y are empty.*/
+    private boolean isEmpty(int x, int y) {
+        return getOccupant(x, y).name.equals("empty");
+    }
+
+    /**Returns the occupant at the x and y.*/
 	public Occupant getOccupant(int x, int y) {
 		return occupants[x][y];
 	}
 
+	/**Draws out the NxN grid.*/
 	public void drawGrid() {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
