@@ -8,7 +8,8 @@ import java.awt.Color;
 public class Terrain {
 	
 	/** There are different types of Terrain.
-	 *  NORMAL is the standard terrain and has no special effects.
+	 *  NORMAL is the standard terrain and has no special effects. A null TerrainType is
+	 *  equivalent to the this type.
 	 */
 	public enum TerrainType {
 		NORMAL
@@ -18,7 +19,8 @@ public class Terrain {
     public Color colorOf(TerrainType type) {
         switch (type) {
         	case TerrainType.NORMAL: return Color.WHITE;
-        	default: return Color.WHITE;
+        	// Null TerrainTypes are equivalent to NORMAL TerrainTypes.
+        	default: return Color.WHITE; 
         }
     }    
 

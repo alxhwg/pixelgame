@@ -1,54 +1,55 @@
 package pixelgame;
 
+import java.util.PritorityQueue;
+
 public class Grid {
-	/** Grid size*/
+	/** The length of one side of the square grid */
 	private int N;
+	/** 2D array of the terrain of the grid */
+	private Terrain.TerrainType[][] terrain;
+	/** 2D array of all the Pixels of the game. */
+	private Pixel[][] pixels; //An alternative to a 2D array is a PQ.
 
-	/**2D array of the occupants*/
-	private Occupant [][] occupants;
-
-	/**Creates the grid of size gridsize.*/
-	public Grid(int gridSize) {
-		N = gridSize;
-        occupants = new Occupant[N][N];
-        for (int y = 0; y < N; y++) {
-            for (int x = 0; x < N; x++) {
-                occupants[y][x] = null;
-            }
-        }
+	/** Creates square grid with a side length of size with no terrain and pixels. */
+	public Grid(int size) {
+		N = size;
+        terrain = new Terrain.TerrainType[N][N];
+        pixels = new Pixel[N][N];
 	}
 
-    /**Returns the occupant at the x and y.*/
-	public Occupant getOccupant(int x, int y) {
-		return occupants[x][y];
+	/** Checks whether or not the coordinates specified are in the board, and if they aren't
+	 *  throws an exception. */
+	private void checkBounds(int x, int y) {
+		if (!((x < N && x >= 0) && (y < N && y >= 0))) {
+			throw new IllegalArgumentException("Coordinates are out of bounds.");
+		}
+	}
+	
+    /** Returns the occupant at x and y. */
+	public Pixel get(int x, int y) {
+		checkBounds(x, y);
+		return pixels[x][y];
 	}
 
-    /** Returns true if spot at coordinates x and y are empty.*/
+    /** Returns true if spot at coordinates x and y is empty. */
     private boolean isEmpty(int x, int y) {
-        return getOccupant(x, y).name.equals("empty");
+    	checkBounds(x, y);
+        return pixels[x][y] == null;
     }
 
-    /**Places occupant at x and y and throws an exception if the space isn't empty.*/
-    public void placeOccupant(int x, int y, Occupant o) {
-        if (!isEmpty(x, y)) {
-            Occupant oldOccupant = getOccupant(x, y);
-            throw new IllegalArgumentException(
-                      String.format("Tried to place a %s at (%d, %d), but "
-                       + " space is already occupied by a %s.", o.name,
-                       x, y, oldOccupant));
+    /** Places Pixel p at location (x, y). */
+    public void place(Pixel p, int x, int y) {
+    	checkBounds(x, y);
+        if (isEmpty(x, y)) {
+            pixels[x][y] = p;
+        } else {
+        	throw new IllegalArgumentException(String.format("Tried to place a %s at "
+        			+ "(%d, %d).", x, y));
         }
-        occupants[y][x] = o;
     }
 
-	/**Draws out the NxN grid.*/
+	/** Draws out the NxN grid. */
 	public void drawGrid() {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                Occupant o = getOccupant(i, j);
-                StdDraw.setPenColor(o.color());
-                StdDraw.filledSquare(i + 0.5, j + 0.5, 0.45);	
-            }
-        }
 	}
 
 }

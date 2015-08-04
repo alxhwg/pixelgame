@@ -4,3 +4,7 @@ This is a to-do list.
 2. Start Skeleton Code.
 3. Develop.
 4. Write Tests.
+
+## Other Notes ##
+Classes to create:
+1. Effect.java ? (depends on how terrain effects are implemented)
