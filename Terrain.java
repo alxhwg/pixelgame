@@ -1,16 +1,29 @@
 package pixelgame;
+
 import java.awt.Color;
 
-public class Terrain extends Pixel {
-
-	/**Creates some terrain.*/
-	public Terrain(){
-		super("rock", -1000);
+/** Terrain modifies the behavior of the Creatures that
+ *  inhabit the same space.
+ */
+public class Terrain {
+	
+	/** There are different types of Terrain.
+	 *  NORMAL is the standard terrain and has no special effects.
+	 */
+	public enum TerrainType {
+		NORMAL
 	}
 
-    /**Returns a brown square (a rock?) */
-    public Color color() {
-        return color(102, 51, 0);
+    /** Returns the color of a specifiec TerrainType. */
+    public Color colorOf(TerrainType type) {
+        switch (type) {
+        	case TerrainType.NORMAL: return Color.WHITE;
+        	default: return Color.WHITE;
+        }
     }    
 
+    /** Applies the effects of the Terrain onto a Pixel. */
+    public void apply(TerrainType type, Pixel p) {
+    	//Implementation of applying effects is tbd.
+    }
 }
