@@ -6,7 +6,7 @@ import java.awt.Color;
  *  game grid.
  */
 
-public abstract class Pixel {
+public abstract class Pixel implements Comparable<Pixel> {
 	private int xCoord;
 	private int yCoord;
 	/** In the case the move order of two adjacent pixels needs to be determined;
@@ -34,5 +34,13 @@ public abstract class Pixel {
 	/** Returns the Pixel's color. */
 	public Color getColor() {
 		return color;
+	}
+	
+	/** Establishes a natural ordering for Pixels where higher ranked pixels
+	 *  are considered less than lower ranked Pixels and thus appear closer to
+	 *  the head of a PriorityQueue.
+	 */
+	public int compareTo(Pixel p) {
+		return p.getRank() - this.rank;
 	}
 }
